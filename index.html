@@ -87,23 +87,25 @@
             color: #d81b60;
             font-size: 16px;
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-top: 15px;
+            margin-bottom: 12px;
         }
 
         /* Nút tương tác */
         .btn-group {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
+            margin-bottom: 10px;
         }
 
         button {
             background: linear-gradient(45deg, #ff4081, #ff6e40);
             color: white;
             border: none;
-            padding: 12px 22px;
-            font-size: 15px;
+            padding: 10px 18px;
+            font-size: 14px;
             font-weight: bold;
             border-radius: 25px;
             cursor: pointer;
@@ -114,6 +116,12 @@
         button:hover {
             transform: translateY(-2px) scale(1.06);
             box-shadow: 0 6px 16px rgba(255, 64, 129, 0.45);
+        }
+
+        /* Nút thích lời chúc */
+        .btn-like {
+            background: linear-gradient(45deg, #e91e63, #purple);
+            background-color: #e91e63;
         }
 
         /* Hiệu ứng trái tim & hộp quà rơi toàn màn hình */
@@ -154,9 +162,9 @@
     <div class="card">
         <h1>✨ Happy Birthday Thảo! ✨</h1>
         
-        <!-- Khung ảnh trái tim của Thảo -->
+        <!-- Khung ảnh trái tim của Thảo (Nhớ chỉnh link ảnh phù hợp nếu để trong thư mục images) -->
         <div class="avatar-container">
-            <img class="avatar-img" src="thao.jpg" alt="Ảnh Thảo">
+            <img class="avatar-img" src="images/thao.jpg" alt="Ảnh Thảo">
         </div>
 
         <!-- Lời nhắn chân thành từ Tùng -->
@@ -164,10 +172,15 @@
             Thảo ơi, Tùng chúc Thảo sinh nhật thật là vui vẻ! Chúng mình mới quen nhau nhưng mà tớ thấy nói chuyện với cậu rất vui 🥰. Chúc cậu thêm tuổi mới đạt được nhiều thành công hơn, thi đỗ công chức, thi đỗ bằng lái xe nhé! 🥳🎉
         </div>
 
-        <div class="question">
-            Thảo trả phí cho tớ bằng 1 nụ hôn nhé hihi 😘
+        <!-- DÒNG MỚI BỔ SUNG: Hỏi thích lời chúc -->
+        <div class="question">Cậu có thích lời chúc này không? 🌸</div>
+        <div class="btn-group">
+            <button class="btn-like" onclick="likeNotice('Tớ thích')">Tớ thích ❤️</button>
+            <button class="btn-like" onclick="likeNotice('Tớ rất thích')">Tớ rất thích 🥰</button>
         </div>
-        
+
+        <!-- Dòng trả phí bằng nụ hôn -->
+        <div class="question">Thảo trả phí cho tớ bằng 1 nụ hôn nhé hihi 😘</div>
         <div class="btn-group">
             <button onclick="respond(1)">1 cái 💋</button>
             <button onclick="respond(10)">10 cái 😘</button>
@@ -175,7 +188,7 @@
     </div>
 
     <script>
-        // Tạo các biểu tượng trái tim, hộp quà rơi liên tục toàn màn hình
+        // Tạo các biểu tượng trái tim, hộp quà rơi tự động
         const icons = ['❤️', '💖', '🎁', '✨', '🌸', '💕', '💋', '🎂', '💝', '🎀'];
         function createFloatingItem() {
             const item = document.createElement('div');
@@ -193,10 +206,46 @@
 
         setInterval(createFloatingItem, 250);
 
-        // Bấm nút -> phát nhạc + hiện thông báo dễ thương
+        // Hàm tạo BÙNG NỔ CƠN MƯA TRÁI TIM khi bấm nút thích
+        function triggerHeartRain() {
+            const heartIcons = ['❤️', '💖', '💕', '💗', '💓', '🥰', '✨'];
+            for (let i = 0; i < 40; i++) {
+                setTimeout(() => {
+                    const item = document.createElement('div');
+                    item.classList.add('floating-item');
+                    item.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+                    item.style.left = Math.random() * 100 + 'vw';
+                    item.style.animationDuration = (Math.random() * 2 + 1.5) + 's'; // Rơi nhanh hơn
+                    item.style.fontSize = (Math.random() * 20 + 25) + 'px'; // Kích thước to hơn
+                    document.body.appendChild(item);
+
+                    setTimeout(() => {
+                        item.remove();
+                    }, 3500);
+                }, i * 50); // Xuất hiện liên tục tạo hiệu ứng mưa bùng nổ
+            }
+        }
+
+        // Khi Thảo bấm "Tớ thích" hoặc "Tớ rất thích"
+        function likeNotice(type) {
+            // Phát nhạc nền nếu chưa phát
+            const music = document.getElementById('bgMusic');
+            music.play().catch(e => console.log(e));
+
+            // Kích hoạt mưa trái tim bùng nổ
+            triggerHeartRain();
+
+            setTimeout(() => {
+                alert('Tùng biết ngay là Thảo sẽ thích mà! Cảm ơn cậu nhiều nha 🥰❤️');
+            }, 300);
+        }
+
+        // Bấm nút trả phí nụ hôn
         function respond(amount) {
             const music = document.getElementById('bgMusic');
-            music.play().catch(e => console.log("Tự động phát nhạc bị chặn: ", e));
+            music.play().catch(e => console.log(e));
+
+            triggerHeartRain();
 
             setTimeout(() => {
                 if (amount === 1) {
@@ -204,7 +253,7 @@
                 } else {
                     alert('Wow 10 cái luôn! Thảo hứa rồi đấy nhé, Tùng ghi nhớ rồi đó nha 🥰💋');
                 }
-            }, 100);
+            }, 200);
         }
     </script>
 </body>
