@@ -162,9 +162,9 @@
     <div class="card">
         <h1>✨ Happy Birthday Thảo! ✨</h1>
         
-        <!-- Khung ảnh trái tim của Thảo (Nhớ chỉnh link ảnh phù hợp nếu để trong thư mục images) -->
+        <!-- Khung ảnh trái tim của Thảo - Đã khớp với file download.jpg -->
         <div class="avatar-container">
-            <img class="avatar-img" src="images/thao.jpg" alt="Ảnh Thảo">
+            <img class="avatar-img" src="download.jpg" alt="Ảnh Thảo">
         </div>
 
         <!-- Lời nhắn chân thành từ Tùng -->
@@ -172,14 +172,14 @@
             Thảo ơi, Tùng chúc Thảo sinh nhật thật là vui vẻ! Chúng mình mới quen nhau nhưng mà tớ thấy nói chuyện với cậu rất vui 🥰. Chúc cậu thêm tuổi mới đạt được nhiều thành công hơn, thi đỗ công chức, thi đỗ bằng lái xe nhé! 🥳🎉
         </div>
 
-        <!-- DÒNG MỚI BỔ SUNG: Hỏi thích lời chúc -->
+        <!-- Hỏi thích lời chúc -->
         <div class="question">Cậu có thích lời chúc này không? 🌸</div>
         <div class="btn-group">
             <button class="btn-like" onclick="likeNotice('Tớ thích')">Tớ thích ❤️</button>
             <button class="btn-like" onclick="likeNotice('Tớ rất thích')">Tớ rất thích 🥰</button>
         </div>
 
-        <!-- Dòng trả phí bằng nụ hôn -->
+        <!-- Trả phí bằng nụ hôn -->
         <div class="question">Thảo trả phí cho tớ bằng 1 nụ hôn nhé hihi 😘</div>
         <div class="btn-group">
             <button onclick="respond(1)">1 cái 💋</button>
@@ -206,7 +206,7 @@
 
         setInterval(createFloatingItem, 250);
 
-        // Hàm tạo BÙNG NỔ CƠN MƯA TRÁI TIM khi bấm nút thích
+        // Bùng nổ cơn mưa trái tim khi bấm nút
         function triggerHeartRain() {
             const heartIcons = ['❤️', '💖', '💕', '💗', '💓', '🥰', '✨'];
             for (let i = 0; i < 40; i++) {
@@ -215,24 +215,22 @@
                     item.classList.add('floating-item');
                     item.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
                     item.style.left = Math.random() * 100 + 'vw';
-                    item.style.animationDuration = (Math.random() * 2 + 1.5) + 's'; // Rơi nhanh hơn
-                    item.style.fontSize = (Math.random() * 20 + 25) + 'px'; // Kích thước to hơn
+                    item.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
+                    item.style.fontSize = (Math.random() * 20 + 25) + 'px';
                     document.body.appendChild(item);
 
                     setTimeout(() => {
                         item.remove();
                     }, 3500);
-                }, i * 50); // Xuất hiện liên tục tạo hiệu ứng mưa bùng nổ
+                }, i * 50);
             }
         }
 
         // Khi Thảo bấm "Tớ thích" hoặc "Tớ rất thích"
         function likeNotice(type) {
-            // Phát nhạc nền nếu chưa phát
             const music = document.getElementById('bgMusic');
             music.play().catch(e => console.log(e));
 
-            // Kích hoạt mưa trái tim bùng nổ
             triggerHeartRain();
 
             setTimeout(() => {
