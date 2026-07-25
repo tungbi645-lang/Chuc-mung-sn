@@ -104,8 +104,8 @@
             background: linear-gradient(45deg, #ff4081, #ff6e40);
             color: white;
             border: none;
-            padding: 10px 18px;
-            font-size: 14px;
+            padding: 12px 22px;
+            font-size: 15px;
             font-weight: bold;
             border-radius: 25px;
             cursor: pointer;
@@ -116,12 +116,6 @@
         button:hover {
             transform: translateY(-2px) scale(1.06);
             box-shadow: 0 6px 16px rgba(255, 64, 129, 0.45);
-        }
-
-        /* Nút thích lời chúc */
-        .btn-like {
-            background: linear-gradient(45deg, #e91e63, #purple);
-            background-color: #e91e63;
         }
 
         /* Hiệu ứng trái tim & hộp quà rơi toàn màn hình */
@@ -162,7 +156,7 @@
     <div class="card">
         <h1>✨ Happy Birthday Thảo! ✨</h1>
         
-        <!-- Khung ảnh trái tim của Thảo - Đã khớp với file download.jpg -->
+        <!-- Khung ảnh trái tim của Thảo -->
         <div class="avatar-container">
             <img class="avatar-img" src="download.jpg" alt="Ảnh Thảo">
         </div>
@@ -175,21 +169,14 @@
         <!-- Hỏi thích lời chúc -->
         <div class="question">Cậu có thích lời chúc này không? 🌸</div>
         <div class="btn-group">
-            <button class="btn-like" onclick="likeNotice('Tớ thích')">Tớ thích ❤️</button>
-            <button class="btn-like" onclick="likeNotice('Tớ rất thích')">Tớ rất thích 🥰</button>
-        </div>
-
-        <!-- Trả phí bằng nụ hôn -->
-        <div class="question">Thảo trả phí cho tớ bằng 1 nụ hôn nhé hihi 😘</div>
-        <div class="btn-group">
-            <button onclick="respond(1)">1 cái 💋</button>
-            <button onclick="respond(10)">10 cái 😘</button>
+            <button onclick="likeNotice('Tớ thích')">Tớ thích ❤️</button>
+            <button onclick="likeNotice('Tớ rất thích')">Tớ rất thích 🥰</button>
         </div>
     </div>
 
     <script>
         // Tạo các biểu tượng trái tim, hộp quà rơi tự động
-        const icons = ['❤️', '💖', '🎁', '✨', '🌸', '💕', '💋', '🎂', '💝', '🎀'];
+        const icons = ['❤️', '💖', '🎁', '✨', '🌸', '💕', '🎂', '💝', '🎀'];
         function createFloatingItem() {
             const item = document.createElement('div');
             item.classList.add('floating-item');
@@ -236,22 +223,6 @@
             setTimeout(() => {
                 alert('Tùng biết ngay là Thảo sẽ thích mà! Cảm ơn cậu nhiều nha 🥰❤️');
             }, 300);
-        }
-
-        // Bấm nút trả phí nụ hôn
-        function respond(amount) {
-            const music = document.getElementById('bgMusic');
-            music.play().catch(e => console.log(e));
-
-            triggerHeartRain();
-
-            setTimeout(() => {
-                if (amount === 1) {
-                    alert('Chốt deal 1 nụ hôn nhé! Nhớ trả đủ cho Tùng đấy nha 😚❤️');
-                } else {
-                    alert('Wow 10 cái luôn! Thảo hứa rồi đấy nhé, Tùng ghi nhớ rồi đó nha 🥰💋');
-                }
-            }, 200);
         }
     </script>
 </body>
