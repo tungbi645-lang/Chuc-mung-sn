@@ -1,1 +1,211 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Sinh Nhật Thảo! ❤️</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #feada6 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Thẻ nội dung chính */
+        .card {
+            background: rgba(255, 255, 255, 0.94);
+            padding: 30px 22px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(233, 30, 99, 0.25);
+            text-align: center;
+            width: 360px;
+            max-width: 90%;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            margin: 20px 0;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        h1 {
+            color: #e91e63;
+            margin-top: 0;
+            margin-bottom: 18px;
+            font-size: 23px;
+            font-weight: 700;
+        }
+
+        /* Khung ảnh trái tim */
+        .avatar-container {
+            width: 170px;
+            height: 170px;
+            margin: 0 auto 18px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            clip-path: path('M 85,25 C 85,25 70,0 42,0 C 19,0 0,19 0,42 C 0,72 30,102 85,155 C 140,102 170,72 170,42 C 170,19 151,0 128,0 C 100,0 85,25 85,25 Z');
+            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .avatar-container:hover .avatar-img {
+            transform: scale(1.05);
+        }
+
+        /* Đoạn lời nhắn */
+        .message {
+            color: #444;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 18px;
+            text-align: justify;
+            background: #fff5f7;
+            padding: 15px;
+            border-radius: 15px;
+            border-left: 4px solid #ff4081;
+        }
+
+        .question {
+            color: #d81b60;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        /* Nút tương tác */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: linear-gradient(45deg, #ff4081, #ff6e40);
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(255, 64, 129, 0.35);
+        }
+
+        button:hover {
+            transform: translateY(-2px) scale(1.06);
+            box-shadow: 0 6px 16px rgba(255, 64, 129, 0.45);
+        }
+
+        /* Hiệu ứng trái tim & hộp quà rơi toàn màn hình */
+        .floating-item {
+            position: fixed;
+            top: -50px;
+            font-size: 24px;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(108vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nhạc nền sinh nhật -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=happy-birthday-115332.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="card">
+        <h1>✨ Happy Birthday Thảo! ✨</h1>
+        
+        <!-- Khung ảnh trái tim của Thảo -->
+        <div class="avatar-container">
+            <img class="avatar-img" src="thao.jpg" alt="Ảnh Thảo">
+        </div>
+
+        <!-- Lời nhắn chân thành từ Tùng -->
+        <div class="message">
+            Thảo ơi, Tùng chúc Thảo sinh nhật thật là vui vẻ! Chúng mình mới quen nhau nhưng mà tớ thấy nói chuyện với cậu rất vui 🥰. Chúc cậu thêm tuổi mới đạt được nhiều thành công hơn, thi đỗ công chức, thi đỗ bằng lái xe nhé! 🥳🎉
+        </div>
+
+        <div class="question">
+            Thảo trả phí cho tớ bằng 1 nụ hôn nhé hihi 😘
+        </div>
+        
+        <div class="btn-group">
+            <button onclick="respond(1)">1 cái 💋</button>
+            <button onclick="respond(10)">10 cái 😘</button>
+        </div>
+    </div>
+
+    <script>
+        // Tạo các biểu tượng trái tim, hộp quà rơi liên tục toàn màn hình
+        const icons = ['❤️', '💖', '🎁', '✨', '🌸', '💕', '💋', '🎂', '💝', '🎀'];
+        function createFloatingItem() {
+            const item = document.createElement('div');
+            item.classList.add('floating-item');
+            item.innerText = icons[Math.floor(Math.random() * icons.length)];
+            item.style.left = Math.random() * 100 + 'vw';
+            item.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            item.style.fontSize = (Math.random() * 15 + 20) + 'px';
+            document.body.appendChild(item);
+
+            setTimeout(() => {
+                item.remove();
+            }, 6500);
+        }
+
+        setInterval(createFloatingItem, 250);
+
+        // Bấm nút -> phát nhạc + hiện thông báo dễ thương
+        function respond(amount) {
+            const music = document.getElementById('bgMusic');
+            music.play().catch(e => console.log("Tự động phát nhạc bị chặn: ", e));
+
+            setTimeout(() => {
+                if (amount === 1) {
+                    alert('Chốt deal 1 nụ hôn nhé! Nhớ trả đủ cho Tùng đấy nha 😚❤️');
+                } else {
+                    alert('Wow 10 cái luôn! Thảo hứa rồi đấy nhé, Tùng ghi nhớ rồi đó nha 🥰💋');
+                }
+            }, 100);
+        }
+    </script>
+</body>
+</html>
